@@ -1,5 +1,5 @@
 "use client"
-
+import { ListTodo } from "lucide-react";
 import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -34,7 +34,7 @@ export function TaskList({
     <div className="mt-4">
       <div className="mb-2 flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          {tasks.length} {tasks.length === 1 ? "task" : "tasks"}
+          Your Tasks
         </p>
 
         <AlertDialog open={open} onOpenChange={setOpen}>
@@ -68,13 +68,27 @@ export function TaskList({
       <Separator className="mb-3" />
 
       {tasks.length === 0 ? (
-        <div className="rounded-md border bg-card p-6 text-center" aria-live="polite">
-          <p className="text-pretty">No tasks to show. Add a task to get started!</p>
+        <div
+          className="rounded-md border bg-card/50 p-6 text-center flex flex-col items-center gap-4"
+          aria-live="polite"
+        >
+          <ListTodo className="size-12 text-muted-foreground" />
+          <div>
+            <p className="font-semibold">No tasks yet!</p>
+            <p className="text-muted-foreground text-sm mt-1">
+              Add a new task above to get started.
+            </p>
+          </div>
         </div>
       ) : (
         <ul className="grid gap-2">
           {tasks.map((t) => (
-            <TaskItem key={t.id} task={t} onToggleComplete={onToggleComplete} onDelete={onDeleteTask} />
+            <TaskItem
+              key={t.id}
+              task={t}
+              onToggleComplete={onToggleComplete}
+              onDelete={onDeleteTask}
+            />
           ))}
         </ul>
       )}

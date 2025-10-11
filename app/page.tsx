@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <main className="mx-auto max-w-3xl p-4 md:p-6">
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-pretty text-2xl font-semibold tracking-tight md:text-3xl">To-Do List</h1>
           <p className="text-muted-foreground text-sm">Manage tasks with due dates, filters, and persistence.</p>

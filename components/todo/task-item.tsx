@@ -1,5 +1,7 @@
 "use client"
 
+import { Trash2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -29,16 +31,17 @@ export function TaskItem({
   const dueLabel = task.dueDate ? new Date(task.dueDate + "T00:00:00").toLocaleDateString() : null
 
   return (
-    <li className="flex items-center justify-between rounded-md border bg-card p-3" aria-label={task.title}>
-      <div className="flex min-w-0 items-center gap-3">
-        <input
-          id={`chk-${task.id}`}
-          type="checkbox"
-          className="h-4 w-4"
-          checked={task.completed}
-          onChange={() => onToggleComplete(task.id)}
-          aria-label={task.completed ? "Mark as pending" : "Mark as completed"}
-        />
+        <li
+      className="flex items-center justify-between rounded-md border bg-card p-3 transition-all hover:bg-accent animate-in fade-in"
+      aria-label={task.title}
+    >   <div className="flex min-w-0 items-center gap-3">
+<Checkbox
+  id={`chk-${task.id}`}
+  checked={task.completed}
+  onCheckedChange={() => onToggleComplete(task.id)}
+  aria-label={task.completed ? "Mark as pending" : "Mark as completed"}
+  className="dark:border-white data-[state=checked]:bg-white data-[state=checked]:text-black"
+/>
         <div className="min-w-0">
           <label
             htmlFor={`chk-${task.id}`}
@@ -55,8 +58,8 @@ export function TaskItem({
 
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogTrigger asChild>
-          <Button variant="ghost" size="sm" aria-label="Delete task">
-            Delete
+          <Button variant="ghost" size="icon-sm" aria-label="Delete task">
+            <Trash2 className="size-4 text-muted-foreground transition-colors hover:text-destructive" />
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
