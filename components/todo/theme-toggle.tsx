@@ -9,14 +9,12 @@ type ThemeMode = "light" | "dark"
 export function ThemeToggle() {
   const [mode, setMode] = React.useState<ThemeMode>("light")
 
-  // initialize from storage or system preference
   React.useEffect(() => {
     const stored = window.localStorage.getItem(THEME_KEY) as ThemeMode | null
     const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
     const initial: ThemeMode = stored ?? (prefersDark ? "dark" : "light")
     setMode(initial)
     applyTheme(initial)
-    // listen to system changes to keep in sync if user hasn't set explicitly
     const mql = window.matchMedia("(prefers-color-scheme: dark)")
     const onChange = (e: MediaQueryListEvent) => {
       const currentStored = window.localStorage.getItem(THEME_KEY)

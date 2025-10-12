@@ -5,7 +5,7 @@ import useSWR from "swr"
 export type Task = {
   id: string
   title: string
-  dueDate?: string // ISO yyyy-mm-dd
+  dueDate?: string
   completed: boolean
   createdAt: string
 }
@@ -51,7 +51,6 @@ export function useTasks() {
     await mutate(next, { revalidate: false })
   }
 
-  // filter persistence
   const initialFilter =
     (typeof window !== "undefined" && (window.localStorage.getItem(FILTER_KEY) as Filter | null)) || "all"
   const [filter, setFilterState] = React.useState<Filter>(initialFilter)
@@ -115,5 +114,4 @@ export function useTasks() {
   }
 }
 
-// required import for React in client-only hooks
 import React from "react"

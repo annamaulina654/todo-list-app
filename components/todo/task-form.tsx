@@ -13,7 +13,10 @@ export function TaskForm({
 }) {
   const [title, setTitle] = React.useState("");
   const [dueDate, setDueDate] = React.useState<string>("");
-  const [touched, setTouched] = React.useState<{ title: boolean; due: boolean }>({ title: false, due: false });
+  const [touched, setTouched] = React.useState<{
+    title: boolean;
+    due: boolean;
+  }>({ title: false, due: false });
 
   const today = new Date();
   const yyyy = today.getFullYear();
@@ -26,8 +29,8 @@ export function TaskForm({
       title.trim().length === 0
         ? "Title is required"
         : title.trim().length > 120
-          ? "Keep titles under 120 characters"
-          : "",
+        ? "Keep titles under 120 characters"
+        : "",
     due: dueDate && dueDate < minDate ? "Due date cannot be in the past" : "",
   };
 
@@ -44,9 +47,11 @@ export function TaskForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-3 md:grid-cols-12">
-      {/* Kolom untuk Input Judul Tugas (7 dari 12 kolom) */}
-<div className="grid gap-1.5 md:col-span-7">
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-1 gap-3 md:grid-cols-12"
+    >
+      <div className="grid gap-1.5 md:col-span-7">
         <Label htmlFor="title">Task Title</Label>
         <Input
           id="title"
@@ -57,17 +62,21 @@ export function TaskForm({
           aria-invalid={touched.title && !!errors.title}
           aria-describedby="title-error"
         />
-<div className="h-5"> {/* Div ini untuk mencadangkan ruang */}
-  {touched.title && errors.title ? (
-    <p id="title-error" className="text-destructive text-sm" role="alert" aria-live="polite">
-      {errors.title}
-    </p>
-  ) : null}
-</div>
+        <div className="h-5">
+          {touched.title && errors.title ? (
+            <p
+              id="title-error"
+              className="text-destructive text-sm"
+              role="alert"
+              aria-live="polite"
+            >
+              {errors.title}
+            </p>
+          ) : null}
+        </div>
       </div>
 
-      {/* Kolom untuk Input Tanggal (3 dari 12 kolom) */}
-<div className="grid gap-1.5 md:col-span-3">
+      <div className="grid gap-1.5 md:col-span-3">
         <Label htmlFor="due">Due Date</Label>
         <Input
           id="due"
@@ -79,23 +88,26 @@ export function TaskForm({
           aria-invalid={!!errors.due}
           aria-describedby="due-error"
         />
-<div className="h-5"> {/* Div ini untuk mencadangkan ruang */}
-  {touched.due && errors.due ? (
-    <p id="due-error" className="text-destructive text-sm" role="alert" aria-live="polite">
-      {errors.due}
-    </p>
-  ) : null}
-</div>
+        <div className="h-5">
+          {touched.due && errors.due ? (
+            <p
+              id="due-error"
+              className="text-destructive text-sm"
+              role="alert"
+              aria-live="polite"
+            >
+              {errors.due}
+            </p>
+          ) : null}
+        </div>
       </div>
 
-      {/* Kolom untuk Tombol "Add Task" (2 dari 12 kolom) */}
-      
-<div className="flex items-end pb-6.5 md:col-span-2">
-  <Button type="submit" className="w-full" disabled={!isValid}>
-    <Plus className="size-4 mr-2" />
-    Add Task
-  </Button>
-</div>
+      <div className="flex items-end pb-6.5 md:col-span-2">
+        <Button type="submit" className="w-full" disabled={!isValid}>
+          <Plus className="size-4 mr-2" />
+          Add Task
+        </Button>
+      </div>
     </form>
   );
 }
