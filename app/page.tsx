@@ -9,6 +9,7 @@ import { TaskList } from "@/components/todo/task-list"
 import { ThemeToggle } from "@/components/todo/theme-toggle"
 
 export default function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { tasks, filteredTasks, filter, setFilter, addTask, toggleComplete, deleteTask, clearAll, counts } = useTasks()
 
   return (
