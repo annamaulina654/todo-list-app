@@ -77,7 +77,7 @@ export function TaskItem({
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this task?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. The task "{task.title}" will be
+              This action cannot be undone. The task &quot;{task.title}&quot; will be
               permanently removed.
             </AlertDialogDescription>
           </AlertDialogHeader>
